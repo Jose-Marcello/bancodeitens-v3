@@ -4,20 +4,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# 1. Copia todos os arquivos e pastas da raiz do projeto para o container.
-# Esta é a mudança mais crucial para soluções multi-projeto:
-# Garante que o .sln, o NuGet.config e *toda* a pasta src/ (com todos os .csproj)
-# estejam na hierarquia correta em /app antes da restauração.
+# 1. Copia todos os arquivos (Já fizemos este commit)
 COPY . .
 
-# 2. Restaura explicitamente a Solução.
-# Isso garante que as dependências NuGet (AutoMapper, FluentValidation, etc.) sejam baixadas
-# e que todas as referências entre projetos (Project References) sejam resolvidas.
+# 2. Restaura explicitamente a Solução
 RUN dotnet restore BancoDeItens_V3.sln
 
-# 3. Publica a Solução focando no projeto de API.
-# O path é relativo ao WORKDIR /app.
-RUN dotnet publish "src/BancoItens.Api/BancoItens.Api.csproj" -c Release -o /publish /p:UseAppHost=false /p:RuntimeIdentifier=linux-x64
+# 3. NOVO: Força a compilação de toda a Solução ANTES da publicação.
+# Isso garante que todas as referências internas sejam resolvidas e construídas.
+# Usamos --no-restore pois já rodamos o restore no passo anterior.
+RUN dotnet build BancoDeItens_V3.sln --no-restore -c Release
+
+# 4. Publica apenas o projeto da API, usando os binários construídos.
+# Usamos --no-build para não compilar novamente, apenas empacotar o que já foi construído.
+RUN dotnet publish "src/BancoItens.Api/BancoItens.Api.csproj" --no-build -c Release -o /publish /p:UseAppHost=false /p:RuntimeIdentifier=linux-x64
 
 #------------------------------------------------------------------
 # Estágio 2: Imagem de Produção Final (RUNTIME)
@@ -26,7 +26,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 EXPOSE 8080
 
-# Copia os arquivos publicados do estágio 'build'
+# Copia os arquivos publicados
 COPY --from=build /publish .
 
 # Comando final para rodar a aplicação

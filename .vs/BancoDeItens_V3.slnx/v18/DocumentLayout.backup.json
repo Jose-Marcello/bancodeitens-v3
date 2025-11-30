@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Desen\\BancoDeItens_V3\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|Itens de Solu\u00E7\u00E3o{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|C:\\Desen\\BancoDeItens_V3\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|Itens de Solu\u00E7\u00E3o{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,19 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Desen\\BancoDeItens_V3\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Desen\\BancoDeItens_V3\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-30T01:48:48.701Z",
-              "EditorCaption": ""
             }
           ]
         },
