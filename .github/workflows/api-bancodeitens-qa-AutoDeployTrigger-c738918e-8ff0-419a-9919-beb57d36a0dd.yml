@@ -34,9 +34,15 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }}Dockerfile
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
+          # 1. Define o contexto de build como a raiz do repositório (correto)
+          appSourcePath: '.'
+          # 2. Define o NOME EXATO do Dockerfile que você criou localmente
+          dockerfilePath: 'bancodeitens-v3Dockerfile'
+          
+          # Remova as linhas _dockerfilePathKey_ e _targetLabelKey_ para evitar conflitos:
+          # _dockerfilePathKey_: _dockerfilePath_
+          # _targetLabelKey_: _targetLabel_
+
           registryUrl: novobancoitensacr.azurecr.io
           registryUsername: ${{ secrets.APIBANCODEITENSQA_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.APIBANCODEITENSQA_REGISTRY_PASSWORD }}
@@ -45,5 +51,6 @@ jobs:
           imageToBuild: novobancoitensacr.azurecr.io/api-bancodeitens-qa:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
+
 
 
