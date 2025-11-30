@@ -4,19 +4,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# 1. Copia todos os arquivos (Já fizemos este commit)
+# 1. Cria um diretório para cache NuGet
+RUN mkdir -p /nuget_cache
+
+# 2. Copia todos os arquivos
 COPY . .
 
-# 2. NOVO PASSO CRUCIAL: Limpa as pastas de cache de build locais.
-# Isso garante que o 'dotnet restore' e 'dotnet publish' rodem em um estado limpo,
-# sem arquivos 'obj' ou 'bin' antigos que podem confundir o compilador.
-RUN find . -type d -name "obj" -exec rm -rf {} + && \
-    find . -type d -name "bin" -exec rm -rf {} +
-
-# 3. Restaura e Publica TUDO em um único comando
-# A flag /p:RestorePackagesPath força o NuGet a usar um cache específico,
-# mas vamos tentar a forma mais simples primeiro:
-RUN dotnet publish "src/BancoItens.Api/BancoItens.Api.csproj" -c Release -o /publish /p:UseAppHost=false /p:RuntimeIdentifier=linux-x64
+# 3. Restaura e Publica TUDO em um único comando, FORÇANDO o caminho do cache.
+# Esta é a correção crítica: /p:RestorePackagesPath direciona a restauração
+# e a busca por pacotes para um local consistente e acessível.
+RUN dotnet publish "src/BancoItens.Api/BancoItens.Api.csproj" \
+    -c Release -o /publish \
+    /p:UseAppHost=false \
+    /p:RuntimeIdentifier=linux-x64 \
+    /p:RestorePackagesPath=/nuget_cache
 
 #------------------------------------------------------------------
 # Estágio 2: Imagem de Produção Final (RUNTIME)
