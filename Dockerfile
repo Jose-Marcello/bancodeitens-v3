@@ -9,8 +9,7 @@ COPY . .
 
 # Executa o restore e o publish no comando unico mais simples
 #RUN dotnet publish "src/BancoItens.Api/BancoItens.Api.csproj" -c Release -o /publish /p:UseAppHost=false
-RUN dotnet publish "src/BancoItens_WebApi/BancoItens.WebApi.csproj" -c Release -o /publish /p:UseAppHost=false
-
+RUN dotnet publish "src/BancoItens_WebApi/BancoItens.WebApi.csproj" -c Release -o /publish /p:UseAppHost=false /p:SelfContained=false
 #------------------------------------------------------------------
 # Estágio 2: Imagem de Produção Final (RUNTIME)
 #------------------------------------------------------------------
