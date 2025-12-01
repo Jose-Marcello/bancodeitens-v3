@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Desen\\BancoDeItens_V4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|Itens de Solu\u00E7\u00E3o{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|C:\\Desen\\BancoDeItens_V4\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|Itens de Solu\u00E7\u00E3o{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{E3DED7CC-BFD0-E4B3-7802-A924D9ABF478}|src\\BancoItens_WebApi\\BancoItens.WebApi.csproj|c:\\desen\\bancodeitens_v4\\src\\bancoitens_webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E3DED7CC-BFD0-E4B3-7802-A924D9ABF478}|src\\BancoItens_WebApi\\BancoItens.WebApi.csproj|solutionrelative:src\\bancoitens_webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Desen\\BancoDeItens_V4\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Desen\\BancoDeItens_V4\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-01T17:56:48.777Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Desen\\BancoDeItens_V4\\src\\BancoItens_WebApi\\appsettings.json",
+              "RelativeDocumentMoniker": "src\\BancoItens_WebApi\\appsettings.json",
+              "ToolTip": "C:\\Desen\\BancoDeItens_V4\\src\\BancoItens_WebApi\\appsettings.json",
+              "RelativeToolTip": "src\\BancoItens_WebApi\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-01T19:41:45.068Z",
               "EditorCaption": ""
             }
           ]
