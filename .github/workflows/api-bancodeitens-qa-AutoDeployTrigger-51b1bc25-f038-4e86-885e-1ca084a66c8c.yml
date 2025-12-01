@@ -28,11 +28,18 @@ jobs:
 
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
+       
+        
         with:
-          appSourcePath: ${{ github.workspace }}bancodeitens-v4Dockerfile
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
+          # Define o contexto como a raiz do repositório
+          appSourcePath: '.'
+          # Define o nome padrao do Dockerfile
+          dockerfilePath: 'Dockerfile' 
+
+          # O resto das chaves (registryUrl, containerAppName, etc.)
           registryUrl: novobancoitensacr.azurecr.io
+
+          
           registryUsername: ${{ secrets.APIBANCODEITENSQA_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.APIBANCODEITENSQA_REGISTRY_PASSWORD }}
           containerAppName: api-bancodeitens-qa
@@ -42,4 +49,5 @@ jobs:
             
 
      
+
 
