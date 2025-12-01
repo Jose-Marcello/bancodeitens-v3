@@ -22,4 +22,4 @@ EXPOSE 8080
 COPY --from=build /publish .
 
 # Comando final para rodar a aplicação
-CMD ["dotnet", "BancoItens.Api.dll", "--urls", "http://0.0.0.0:8080"]
+CMD ["dotnet", "BancoItens.WebApi.dll", "--urls", "http://0.0.0.0:8080"]
