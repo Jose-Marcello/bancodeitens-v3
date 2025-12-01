@@ -115,11 +115,11 @@ var app = builder.Build();
 app.ApplyMigrations();
 
 // === CONFIGURAÇÃO DO PIPELINE DE REQUISIÇÃO HTTP ===
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseCors("CorsPolicy");
 app.UseAuthorization();
