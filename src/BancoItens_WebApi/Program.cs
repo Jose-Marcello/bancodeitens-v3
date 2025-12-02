@@ -30,7 +30,7 @@ builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
 builder.Services.AddScoped<IQuestaoService, QuestaoService>();
 
 
-builder.Services.AddCors(options => 
+builder.Services.AddCors(options =>  
 {
     options.AddPolicy("CorsPolicy",
         policy => policy.WithOrigins(
