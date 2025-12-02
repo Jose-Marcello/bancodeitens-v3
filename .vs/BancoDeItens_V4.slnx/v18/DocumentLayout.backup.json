@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Desen\\BancoDeItens_V4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3DED7CC-BFD0-E4B3-7802-A924D9ABF478}|src\\BancoItens_WebApi\\BancoItens.WebApi.csproj|c:\\desen\\bancodeitens_v4\\src\\bancoitens_webapi\\controllers\\questoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3DED7CC-BFD0-E4B3-7802-A924D9ABF478}|src\\BancoItens_WebApi\\BancoItens.WebApi.csproj|solutionrelative:src\\bancoitens_webapi\\controllers\\questoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|Itens de Solu\u00E7\u00E3o{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|C:\\Desen\\BancoDeItens_V4\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|Itens de Solu\u00E7\u00E3o{60CA0214-88C6-8651-7B8B-6C0F6C5892CB}|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E3DED7CC-BFD0-E4B3-7802-A924D9ABF478}|src\\BancoItens_WebApi\\BancoItens.WebApi.csproj|c:\\desen\\bancodeitens_v4\\src\\bancoitens_webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,23 +18,19 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "QuestoesController.cs",
-              "DocumentMoniker": "C:\\Desen\\BancoDeItens_V4\\src\\BancoItens_WebApi\\Controllers\\QuestoesController.cs",
-              "RelativeDocumentMoniker": "src\\BancoItens_WebApi\\Controllers\\QuestoesController.cs",
-              "ToolTip": "C:\\Desen\\BancoDeItens_V4\\src\\BancoItens_WebApi\\Controllers\\QuestoesController.cs",
-              "RelativeToolTip": "src\\BancoItens_WebApi\\Controllers\\QuestoesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T22:32:55.096Z",
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Desen\\BancoDeItens_V4\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Desen\\BancoDeItens_V4\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAwwBoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-02T15:30:41.665Z",
               "EditorCaption": ""
             },
             {
@@ -45,10 +41,14 @@
               "RelativeDocumentMoniker": "src\\BancoItens_WebApi\\Program.cs",
               "ToolTip": "C:\\Desen\\BancoDeItens_V4\\src\\BancoItens_WebApi\\Program.cs",
               "RelativeToolTip": "src\\BancoItens_WebApi\\Program.cs",
-              "ViewState": "AgIAAHAAAAAAAAAAAAAYwHcAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAnwCUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T22:23:15.102Z",
+              "WhenOpened": "2025-12-01T23:43:45.213Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             }
           ]
         },

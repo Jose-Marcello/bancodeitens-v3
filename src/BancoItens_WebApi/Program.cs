@@ -1,5 +1,4 @@
-﻿
-using BancoDeItens.Application.Services;
+﻿using BancoDeItens.Application.Services;
 using BancoDeItens.Domain.Interfaces;
 using BancoDeItensWebApi.Extensions;
 using BancoItens.Application.Interface;
@@ -20,58 +19,65 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(new ProducesAttribute("application/json"));
 });
 
-// 🟢 REGISTRO MANUAL DO FLUENTVALIDATION
-// A sintaxe de using foi simplificada para resolver o erro CS0234
-//builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
-
+// 🟢 REGISTRO DA INJEÇÃO DE DEPENDÊNCIA
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
 builder.Services.AddHealthChecks();
 
-// 🟢 REGISTRO DA INJEÇÃO DE DEPENDÊNCIA (AutoMapper e Serviços)
-//builder.Services.AddAutoMapper(cfg =>
-//{
-//    cfg.AddProfile(new AutoMapperProfile());
-//}, Assembly.GetExecutingAssembly());
-
-
 builder.Services.AddScoped<IQuestaoRepository, QuestaoRepository>();
 builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
-
 builder.Services.AddScoped<IQuestaoService, QuestaoService>();
 
 
-// 🛑 CORREÇÃO FINAL DE CORS: Adicionando o serviço de CORS totalmente permissivo
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
-        policy => policy.AllowAnyOrigin() // CORS TOTALMENTE PERMISSIVO
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+        policy => policy.WithOrigins(
+            "https://polite-dune-053c7490f.3.azurestaticapps.net",
+            "app.palpitesbolao.com.br", // Para testes locais
+            "http://localhost:4200" // Para testes locais
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 });
 
 
+// 🛑 CORS: Totalmente permissivo para comunicação entre Azure SWA (Frontend) e Azure ACA (Backend)
+/*
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        policy => policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+*/
+
 // === CONFIGURAÇÃO DO DBCONTEXT (POSTGRESQL) ===
 
-var railwayConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var connectionString = "";
+// 💡 CÓDIGO DO RAILWAY COMENTADO, MAS MANTIDO PARA REFERÊNCIA:
+// var railwayConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-if (string.IsNullOrEmpty(railwayConnectionString))
+// 1. Tenta ler a Connection String do Azure (formato tradicional) ou 'DefaultConnection'
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// 2. Tenta ler a Connection String do Container Apps (ACA) / Variável de Ambiente (ex: DATABASE_URL)
+if (string.IsNullOrEmpty(connectionString))
 {
-    railwayConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    connectionString = builder.Configuration["DATABASE_URL"];
 }
 
-if (string.IsNullOrEmpty(railwayConnectionString))
+if (string.IsNullOrEmpty(connectionString))
 {
     throw new InvalidOperationException("A Connection String 'DefaultConnection' ou 'DATABASE_URL' não foi encontrada.");
 }
 
-// 🛑 CORREÇÃO DA CONNECTION STRING: Conversão de URL (postgresql://...) para Chave/Valor
-if (railwayConnectionString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
+// 🛑 TRATAMENTO DA CONNECTION STRING (MANTIDO PARA COMPATIBILIDADE COM FORMATO URL)
+// Converte a URL PostgreSQL (ex: railway/heroku) para o formato chave/valor
+if (connectionString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
 {
-    var match = Regex.Match(railwayConnectionString,
+    var match = Regex.Match(connectionString,
         @"postgresql://(?<user>[^:]+):(?<password>[^@]+)@(?<host>[^:]+):(?<port>\d+)/(?<database>.+)");
 
     if (match.Success)
@@ -82,16 +88,8 @@ if (railwayConnectionString.StartsWith("postgresql://", StringComparison.Ordinal
                            $"Password={match.Groups["password"].Value};" +
                            $"Database={match.Groups["database"].Value}";
     }
-    else
-    {
-        throw new InvalidOperationException("A Connection String RAILWAY não está no formato URL esperado.");
-    }
 }
-else
-{
-    connectionString = railwayConnectionString;
-}
-// FIM DA CORREÇÃO CRÍTICA
+// FIM DO TRATAMENTO
 
 
 builder.Services.AddDbContext<BancoDeItensContext>(options =>
@@ -115,11 +113,9 @@ var app = builder.Build();
 app.ApplyMigrations();
 
 // === CONFIGURAÇÃO DO PIPELINE DE REQUISIÇÃO HTTP ===
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-//}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("CorsPolicy");
 app.UseAuthorization();
